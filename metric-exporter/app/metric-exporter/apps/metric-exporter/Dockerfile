@@ -16,4 +16,3 @@ RUN npm install --production
 COPY --from=builder /app/dist/metric-exporter .
 
 CMD ["node", "index.js"]
-```
