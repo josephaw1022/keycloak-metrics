@@ -1,0 +1,18 @@
+
+
+
+
+services:
+
+  metric-exporter:
+    build:
+     context: .
+     dockerfile: ./apps/metric-exporter/Dockerfile
+    
+    ports:
+      - 42419:42419
+
+    restart: unless-stopped
+
+    networks:
+      - keycloak-metrics-network

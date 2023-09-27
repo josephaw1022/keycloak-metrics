@@ -1,0 +1,64 @@
+{
+  "name": "metric-exporter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/metric-exporter/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/metric-exporter",
+        "main": "apps/metric-exporter/src/main.ts",
+        "tsConfig": "apps/metric-exporter/tsconfig.app.json",
+        "assets": ["apps/metric-exporter/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/metric-exporter/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "metric-exporter:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "metric-exporter:build:development"
+        },
+        "production": {
+          "buildTarget": "metric-exporter:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/metric-exporter/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/metric-exporter/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
