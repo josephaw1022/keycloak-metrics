@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  # Keycloak
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    ports:
+      - "5051:8080"
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_DB=mssql
+      - KC_DB_URL=jdbc:sqlserver://mssql:1433;databaseName=keycloak;encrypt=false;trustServerCertificate=true;integratedSecurity=false;
+      - KC_DB_USERNAME=SA
+      - KC_DB_PASSWORD=RunningMan323#
+      - KC_HOSTNAME=localhost
+      - KC_HOSTNAME_STRICT=false
+      - KC_TRANSACTION_XA_ENABLED=false
+      - KC_HOSTNAME_DEBUG=true
+      - KC_LOGLEVEL=DEBUG
+    depends_on:
+      - mssql
+    networks:
+      - keycloak-metrics-network
+    volumes:
+      - keycloak_data:/opt/jboss/keycloak/standalone/data
+    command: start-dev
+    restart: unless-stopped
+
+  
+volumes:
+  keycloak_data:

@@ -1,0 +1,10 @@
+version: "3"
+
+include:
+ - "sql-server/docker-compose.yaml"
+ - "keycloak-auth/docker-compose.yaml"
+ - "budibase/docker-compose.yaml"
+
+networks:
+  keycloak-metrics-network:
+    external: true
