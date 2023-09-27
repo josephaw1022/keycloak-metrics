@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@metric-exporter/prometheus-text": ["libs/prometheus-text/src/index.ts"],
+      "@metric-exporter/sql-server-exporter": [
+        "libs/sql-server-exporter/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

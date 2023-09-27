@@ -1,0 +1,44 @@
+{
+  "name": "sql-server-exporter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/sql-server-exporter/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/sql-server-exporter",
+        "tsConfig": "libs/sql-server-exporter/tsconfig.lib.json",
+        "packageJson": "libs/sql-server-exporter/package.json",
+        "main": "libs/sql-server-exporter/src/index.ts",
+        "assets": ["libs/sql-server-exporter/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/sql-server-exporter/**/*.ts",
+          "libs/sql-server-exporter/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/sql-server-exporter/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

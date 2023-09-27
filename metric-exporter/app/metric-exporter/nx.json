@@ -38,5 +38,10 @@
       "!{projectRoot}/eslint.config.js"
     ],
     "sharedGlobals": []
+  },
+  "generators": {
+    "@nx/workspace:move": {
+      "projectNameAndRootFormat": "as-provided"
+    }
   }
 }
