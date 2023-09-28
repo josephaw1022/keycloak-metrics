@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@metric-exporter/keycloak-metric-scraper": [
+        "libs/keycloak-metric-scraper/src/index.ts"
+      ],
       "@metric-exporter/prometheus-text": ["libs/prometheus-text/src/index.ts"],
       "@metric-exporter/sql-server-exporter": [
         "libs/sql-server-exporter/src/index.ts"

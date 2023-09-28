@@ -19,7 +19,7 @@ export class MetricService {
     metricLines += this.createTypeLine(metricGroup);
     metricLines += this.createValueLines(metricGroup);
 
-    return metricLines.trim();
+    return metricLines;
   }
 
   /**

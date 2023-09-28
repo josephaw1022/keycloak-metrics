@@ -1,0 +1,44 @@
+{
+  "name": "keycloak-metric-scraper",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/keycloak-metric-scraper/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/keycloak-metric-scraper",
+        "tsConfig": "libs/keycloak-metric-scraper/tsconfig.lib.json",
+        "packageJson": "libs/keycloak-metric-scraper/package.json",
+        "main": "libs/keycloak-metric-scraper/src/index.ts",
+        "assets": ["libs/keycloak-metric-scraper/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/keycloak-metric-scraper/**/*.ts",
+          "libs/keycloak-metric-scraper/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/keycloak-metric-scraper/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

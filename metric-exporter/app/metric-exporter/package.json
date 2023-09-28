@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "dev": "npx nx serve metric-exporter",
     "build": "npx nx build metric-exporter"
   },
   "private": true,
@@ -10,10 +11,13 @@
     "@nestjs/common": "^10.0.2",
     "@nestjs/core": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
+    "@nestjs/typeorm": "^10.0.0",
     "axios": "^1.0.0",
+    "mssql": "^9.3.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@nestjs/schematics": "^10.0.1",

@@ -38,7 +38,7 @@ export interface ValueLine {
   /** Optional array of labels providing additional dimensions for the metric value */
   labels?: Label[];
   /** Value of the metric, which can be either a number or a string */
-  endValue: number | string;
+  endValue?: number | string;
 }
 
 /**
@@ -46,7 +46,7 @@ export interface ValueLine {
  */
 export interface Label {
   /** Key of the label, representing the name or identifier of the dimension */
-  key: string;
+  key: string | undefined;
   /** Value of the label, representing the specific attribute of the dimension */
-  value: string;
+  value: string | undefined;
 }
