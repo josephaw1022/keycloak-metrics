@@ -1,7 +1,5 @@
 version: "3"
 
-
-
 services:
   prometheus:
     image: prom/prometheus
@@ -9,15 +7,15 @@ services:
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml' # Specify the config file
+      - "--config.file=/etc/prometheus/prometheus.yml" # Specify the config file
     ports:
       - 9090:9090
     restart: unless-stopped
     networks:
       - keycloak-metrics-network
-
+    depends_on:
+      - metric-exporter
 
 volumes:
   prometheus_data:

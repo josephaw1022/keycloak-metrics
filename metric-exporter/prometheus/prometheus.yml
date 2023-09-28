@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+
+scrape_configs:
+  - job_name: 'keycloak'
+    static_configs:
+    - targets: ['metric-exporter:42419'] # replace with the correct port number on which your metric-exporter service is running.
+    metrics_path: '/api/keycloak/metrics'
