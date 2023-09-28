@@ -1,16 +1,22 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+interface Env {
+  [key: string]: string | undefined;
+}
+
+const env: Env = process.env;
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mssql',
-      name: 'key-cloak-db',
-      host: 'localhost',
-      port: 1433,
-      username: 'sa',
-      password: 'RunningMan323#',
-      database: 'keycloak',
+      name: env['KEYCLOAK_DB_NAME'] || 'key-cloak-db',
+      host: env['KEYCLOAK_DB_HOST'] || 'localhost',
+      port: +env['KEYCLOAK_DB_PORT']! || 1433,
+      username: env['KEYCLOAK_DB_USER'] || 'sa',
+      password: env['KEYCLOAK_DB_PASS'] || 'RunningMan323#',
+      database: env['KEYCLOAK_DB_DATABASE'] || 'keycloak',
       synchronize: false,
       options: { 
         trustServerCertificate: true,
@@ -18,12 +24,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     TypeOrmModule.forRoot({
       type: 'mssql',
-      name: 'master-db',
-      host: 'localhost',
-      port: 1433,
-      username: 'sa',
-      password: 'RunningMan323#',
-      database: 'master',
+      name: env['MASTER_DB_NAME'] || 'master-db',
+      host: env['MASTER_DB_HOST'] || 'localhost',
+      port: +env['MASTER_DB_PORT']! || 1433,
+      username: env['MASTER_DB_USER'] || 'sa',
+      password: env['MASTER_DB_PASS'] || 'RunningMan323#',
+      database: env['MASTER_DB_DATABASE'] || 'master',
       synchronize: false,
       options: { 
         trustServerCertificate: true,

@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { MetricGroup, Label, ValueLine } from './metric.interface';
 
-
 /**
  * A service for creating metric lines based on given metric groups
  */
 @Injectable()
 export class MetricService {
-  
   /**
    * Create metric lines from a given metric group
    * @param {MetricGroup} metricGroup - The metric group to create lines from
@@ -48,8 +46,9 @@ export class MetricService {
   private createValueLines(metricGroup: MetricGroup): string {
     let valueLines = ``;
     metricGroup.valueLines.forEach((valueLine) => {
-      valueLines += this.createValueLine(metricGroup, valueLine);
+      valueLines += `${this.createValueLine(metricGroup, valueLine)}\n`;
     });
+    valueLines += `\n\n`;
     return valueLines;
   }
 
@@ -67,7 +66,10 @@ export class MetricService {
     if (valueLine.labels) {
       valueLineString += `{${this.createLabelString(valueLine.labels)}}`;
     }
-    valueLineString += ` ${valueLine.endValue}\n`;
+
+    let endPart = valueLine.endValue ? ` ${valueLine.endValue}` : ` 0`;
+    endPart = endPart.replace('null', '0');
+    valueLineString += endPart;
 
     return valueLineString;
   }
@@ -80,8 +82,10 @@ export class MetricService {
   private createLabelString(labels: Label[]): string {
     let labelString = ``;
     labels.forEach((label, index) => {
-      labelString += `${label.key}="${label.value}"${index < labels.length - 1 ? ',' : ''}`;
+      labelString += `${label.key}="${label.value}"${
+        index < labels.length - 1 ? `,` : ``
+      }`;
     });
-    return labelString.slice(0, -1);
+    return labelString.slice(0);
   }
 }

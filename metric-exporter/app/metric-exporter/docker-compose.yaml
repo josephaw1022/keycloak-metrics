@@ -16,3 +16,9 @@ services:
 
     networks:
       - keycloak-metrics-network
+
+    depends_on:
+      - mssql
+
+    env_file:
+      - .env
