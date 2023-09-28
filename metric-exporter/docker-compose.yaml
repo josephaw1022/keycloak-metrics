@@ -1,0 +1,6 @@
+version: "3"
+
+include:
+  - "app/metric-exporter/docker-compose.yaml"
+  - "prometheus/docker-compose.yaml"
+  - "grafana/docker-compose.yaml"
