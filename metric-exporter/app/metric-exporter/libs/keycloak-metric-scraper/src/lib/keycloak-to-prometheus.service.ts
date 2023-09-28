@@ -9,8 +9,7 @@ import { KeycloakMetricService } from './keycloak-metrics.service';
 
 @Injectable()
 export class KeycloakMetricServiceToPrometheus {
-
-  private readonly logger = new Logger(KeycloakMetricServiceToPrometheus.name)
+  private readonly logger = new Logger(KeycloakMetricServiceToPrometheus.name);
 
   constructor(
     private readonly metricService: MetricService,
